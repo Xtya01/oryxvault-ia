@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  oryxvault-api:
+    build:./backend
+    container_name: oryxvault
+    image: ghcr.io/yourname/oryxvault:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - IA_ACCESS_KEY=${IA_ACCESS_KEY}
+      - IA_SECRET_KEY=${IA_SECRET_KEY}
+      - IA_COLLECTION=opensource
+      - ORYX_JWT_SECRET=change-this-secret
+    volumes:
+      - oryx_data:/data
+    restart: unless-stopped
+volumes:
+  oryx_data:
