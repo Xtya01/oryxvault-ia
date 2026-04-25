@@ -1,15 +1,13 @@
-version: '3.8'
 services:
   oryxvault-api:
-    build: ./backend
+    image: oryxvault-ia-oryxvault-api
     container_name: oryxvault
     ports:
-      - "8000:8000"
+      - "8000:8000"   # ← this was missing
     environment:
-      - IA_ACCESS_KEY=${IA_ACCESS_KEY}
-      - IA_SECRET_KEY=${IA_SECRET_KEY}
-      - IA_COLLECTION=${IA_COLLECTION:-opensource}
-      - ORYX_JWT_SECRET=${ORYX_JWT_SECRET:-oryx-secret-change-me}
+      IA_ACCESS_KEY: ${IA_ACCESS_KEY}
+      IA_SECRET_KEY: ${IA_SECRET_KEY}
+      ORYX_JWT_SECRET: ${ORYX_JWT_SECRET}
     volumes:
       - oryx_data:/data
     restart: unless-stopped
